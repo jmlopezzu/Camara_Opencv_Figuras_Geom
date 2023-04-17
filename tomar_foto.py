@@ -1,11 +1,12 @@
 import cv2
 
 # Define the key event listener
-def key_event_listener(event):
-    # Check if the pressed key is the 's' key (for save)
-    if event == ord('s'):
+def key_event_listener(event, x, y, flags, param):
+    # Check if qthe pressed key is the 's' key (for save)
+    if event == cv2.EVENT_FLAG_CTRLKEY and flags == cv2.EVENT_FLAG_LBUTTON:
+        #La foto se toma con control s 
         # Take a picture with the camera
-        frame = cap.read()
+        ret, frame = cap.read()
         # Save the picture to disk
         cv2.imwrite('picture.png', frame)
 
@@ -13,11 +14,14 @@ def key_event_listener(event):
 cap = cv2.VideoCapture(0)
 
 # Setup the window and key event listener
-cv2.namedWindow("Camera Feed")
-cv2.setMouseCallback("Camera Feed", key_event_listener)
+
 
 # Start the main loop
 while True:
+    # Setup the window and key event listener
+    cv2.namedWindow("Camera Feed")
+    
+    cv2.setMouseCallback("Camera Feed", key_event_listener)
     # Read a frame from the camera
     ret, frame = cap.read()
     # Show the frame in the window
