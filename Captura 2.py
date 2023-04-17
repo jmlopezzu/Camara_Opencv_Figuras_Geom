@@ -22,7 +22,7 @@ while True:
     key =cv2.waitKey(0)
 
     #if key ==ord('q'):
-    #  break
+    #   break
 
     print(a)
 
