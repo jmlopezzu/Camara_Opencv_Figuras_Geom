@@ -5,7 +5,7 @@ import cv2
 
 
 # Crear una instancia de OpenALPR
-alpr = openalpr.Alpr("us", "/etc/openalpr/openalpr.conf", "/usr/share/openalpr/runtime_data","co")
+alpr = openalpr.Alpr("us", "D:/openalpr_64/openalpr.conf", "D:\openalpr_64/runtime_data","co")
 
 # Configurar la cámara
 cap = cv2.VideoCapture(0)
