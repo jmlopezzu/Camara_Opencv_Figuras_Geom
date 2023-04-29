@@ -1,5 +1,6 @@
 import cv2
 import os
+import numpy as np
 
 # Crea un objeto de captura de video
 cap = cv2.VideoCapture(0)
@@ -11,6 +12,31 @@ if not os.path.exists('fotos'):
 while True:
     # Lee un fotograma de la cámara
     ret, frame = cap.read()
+
+    # Convertir la imagen a espacio de color HSV
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+    # Definir el rango de colores que deseas detectar en formato HSV
+    # Aquí se define el rango de amarillo
+    lower_yellow = np.array([20, 100, 100])
+    upper_yellow = np.array([30, 255, 255])
+
+    # Aplicar la máscara para detectar solo los píxeles amarillos
+    mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
+
+    # Encontrar los contornos en la imagen de la máscara
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    # Si se encontraron contornos
+    if len(contours) > 0:
+        # Encontrar el contorno más grande (el contorno de la parte amarilla)
+        max_contour = max(contours, key=cv2.contourArea)
+
+        # Encontrar el rectángulo que rodea el contorno
+        x, y, w, h = cv2.boundingRect(max_contour)
+
+        # Dibujar un rectángulo alrededor del contorno
+        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
     # Muestra el fotograma en una ventana
     cv2.imshow('Camara', frame)
