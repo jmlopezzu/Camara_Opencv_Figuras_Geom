@@ -34,7 +34,17 @@ while True:
 
         # Encontrar el rectángulo que rodea el contorno
         x, y, w, h = cv2.boundingRect(max_contour)
-
+        
+        #Calcular aréa
+        area = w * h
+        print(area)
+        
+        #
+        if area >20000 and area<21000:
+            # Guarda la foto en la carpeta "fotos"
+            cv2.imwrite('fotos/imagen.png', frame)
+        
+        
         # Dibujar un rectángulo alrededor del contorno
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
@@ -45,9 +55,9 @@ while True:
     key = cv2.waitKey(1)
 
     # Si se presiona la tecla "q", toma una foto
-    if key == ord('q'):
+    #if key == ord('q'):
         # Guarda la foto en la carpeta "fotos"
-        cv2.imwrite('fotos/imagen.png', frame)
+    #    cv2.imwrite('fotos/imagen.png', frame)
 
     # Si se presiona la tecla "ESC", sale del bucle
     if key == 27:
