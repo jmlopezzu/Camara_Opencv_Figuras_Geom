@@ -4,9 +4,7 @@ import numpy as np
 
 def tomar_foto_video():
     
-    '''Esta función se encarga de comenzar una grabación en vivo, buscar un objeto
-        amarillo(En este caso la placa), y tomar una foto cuando tenga un aréa mayor 
-        a 20000 y menor a 21000. La foto la guarda en la carpeta "fotos" '''
+    '''Esta función se encarga de comenzar una grabación en vivo, buscar un objeto amarillo(En este caso la placa), y tomar una foto cuando tenga un aréa mayor a 20000 y menor a 21000. La foto la guarda en la carpeta "fotos" '''
     
     
     # Crea un objeto de captura de video
